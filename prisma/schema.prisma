@@ -25,6 +25,7 @@ model Post {
   coverImage  String?
   authorName  String?
   seoKeywords String?
+  viewCount   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

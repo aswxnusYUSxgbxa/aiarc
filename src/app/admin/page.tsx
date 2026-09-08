@@ -15,10 +15,11 @@ export default async function AdminDashboard() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created</th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase">Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase">Views</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase">Created</th>
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-900 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
@@ -26,16 +27,17 @@ export default async function AdminDashboard() {
               <tr key={post.id}>
                 <td className="whitespace-nowrap px-6 py-4">
                   <div className="text-sm font-medium text-gray-900 truncate max-w-xs">{post.title}</div>
-                  <div className="text-sm text-gray-500">{post.slug}</div>
+                  <div className="text-sm text-gray-900">{post.slug}</div>
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
                   <span className={`inline-flex rounded-full px-2 text-xs font-semibold ${post.status === "PUBLISHED" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`}>{post.status}</span>
                 </td>
-                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{format(new Date(post.createdAt), "MMM d, yyyy")}</td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900 font-semibold">{post.viewCount}</td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">{format(new Date(post.createdAt), "MMM d, yyyy")}</td>
                 <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium"><Link href={`/admin/posts/${post.id}`} className="text-indigo-600 hover:text-indigo-900">Edit</Link></td>
               </tr>
             ))}
-            {posts.length === 0 && <tr><td colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">No posts yet. Generate one!</td></tr>}
+            {posts.length === 0 && <tr><td colSpan={5} className="px-6 py-4 text-center text-sm text-gray-900">No posts yet. Generate one!</td></tr>}
           </tbody>
         </table>
       </div>

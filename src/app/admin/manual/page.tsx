@@ -11,7 +11,36 @@ export default function CreateManualPostPage() {
   const [coverImage, setCoverImage] = useState("");
   const [authorName, setAuthorName] = useState("Editor");
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setCoverImage(data.url);
+      } else {
+        alert("Failed to upload image");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error uploading image");
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleSave = async () => {
     if (!title || !content) {
@@ -64,7 +93,7 @@ export default function CreateManualPostPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-900 mb-1">
               Title
             </label>
             <input
@@ -76,7 +105,7 @@ export default function CreateManualPostPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-900 mb-1">
               Content
             </label>
             <RichTextEditor content={content} onChange={setContent} />
@@ -85,7 +114,7 @@ export default function CreateManualPostPage() {
 
         <div className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200 h-fit">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-900 mb-1">
               Status
             </label>
             <select
@@ -98,7 +127,7 @@ export default function CreateManualPostPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-900 mb-1">
               Author Name
             </label>
             <input
@@ -109,16 +138,17 @@ export default function CreateManualPostPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Cover Image URL
+            <label className="block text-sm font-medium text-gray-900 mb-1">
+              Cover Image
             </label>
             <input
-              type="text"
-              value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              placeholder="https://..."
-              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={isUploading}
+              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
             />
+            {isUploading && <p className="text-sm text-gray-900 mt-2">Uploading...</p>}
             {coverImage && (
               <img
                 src={coverImage}
