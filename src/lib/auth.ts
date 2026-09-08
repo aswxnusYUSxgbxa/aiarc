@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!credentials?.username || !credentials?.password) return null;
 
         const hardcodedUsername = "aswfsfnsdklfwoinwmkfw";
-        const hardcodedPassword = "a ahnfuawcnjalkcsdoi";
+        const hardcodedPassword = "aahnfuawcnjalkcsdoi";
 
         if (
           credentials.username === hardcodedUsername &&
