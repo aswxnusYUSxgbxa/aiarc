@@ -53,7 +53,7 @@ export default function RichTextEditor({ content, onChange }: { content: string;
       Placeholder.configure({ placeholder: "Start writing your amazing post..." })
     ],
     content: content,
-    editorProps: { attributes: { class: "prose prose-slate prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] p-4 text-gray-900" } },
+    editorProps: { attributes: { class: "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] p-4 prose-gray prose-headings:text-gray-900 prose-p:text-gray-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-strong:text-gray-900 prose-ul:text-gray-900 prose-ol:text-gray-900 prose-li:text-gray-900 prose-blockquote:text-gray-900" } },
     onUpdate: ({ editor }) => { onChange(editor.getHTML()); },
   });
   return (
