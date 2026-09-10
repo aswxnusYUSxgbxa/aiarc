@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/RichTextEditor";
 
-export default function EditPostClient({ post }: { post: any }) {
+export default function EditPostClient({ post }: { post: { id: string, title: string, content: string, status: string, coverImage: string | null, authorName: string | null, seoKeywords: string | null } }) {
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
   const [status, setStatus] = useState(post.status);

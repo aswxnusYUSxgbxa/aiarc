@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
-import clientPromise from '@/lib/mongodb';
 import { auth } from '@/lib/auth';
+import { writeFile } from 'fs/promises';
+import { join } from 'path';
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,19 +20,17 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const client = await clientPromise;
-    const db = client.db();
+    // Create a unique filename
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+    const filename = `${uniqueSuffix}-${file.name.replace(/[^a-zA-Z0-9.]/g, '')}`;
 
-    // Store in MongoDB
-    const result = await db.collection('images').insertOne({
-      name: file.name,
-      type: file.type,
-      data: buffer,
-      createdAt: new Date(),
-    });
+    // Save to public/uploads directory
+    const uploadDir = join(process.cwd(), 'public', 'uploads');
+    const filepath = join(uploadDir, filename);
+    await writeFile(filepath, buffer);
 
     // Return the URL for the frontend to use
-    const url = `/api/images/${result.insertedId}`;
+    const url = `/uploads/${filename}`;
 
     return NextResponse.json({ url });
   } catch (error) {
