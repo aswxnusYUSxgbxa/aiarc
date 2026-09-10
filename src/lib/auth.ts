@@ -12,8 +12,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) return null;
 
-        const hardcodedUsername = "admin";
-        const hardcodedPassword = "password";
+        const hardcodedUsername = "aswfsfnsdklfwoinwmkfw";
+        const hardcodedPassword = "aahnfuawcnjalkcsdoi";
 
         if (
           credentials.username === hardcodedUsername &&

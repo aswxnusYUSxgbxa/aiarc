@@ -11,7 +11,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="flex h-screen bg-gray-100">
       <div className="w-64 bg-white shadow-md">
         <div className="flex h-16 items-center px-6">
-          <span className="text-xl font-bold text-gray-800 flex items-center gap-2"><LayoutDashboard className="w-5 h-5" /> Admin Panel</span>
+          <span className="text-xl font-bold text-gray-900 flex items-center gap-2"><LayoutDashboard className="w-5 h-5" /> Admin Panel</span>
         </div>
         <nav className="mt-6 flex flex-col px-4 gap-2">
           <Link href="/admin" className="flex items-center gap-2 rounded-md px-4 py-2 text-gray-900 hover:bg-gray-100 hover:text-gray-900"><FileText className="w-5 h-5" /> All Posts</Link>

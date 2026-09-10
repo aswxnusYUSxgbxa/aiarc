@@ -1,9 +1,6 @@
 import { signIn } from "@/lib/auth";
-import { AuthError } from "next-auth";
-import { redirect } from "next/navigation";
 
-export default async function SignInPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  const params = await searchParams;
+export default function SignInPage() {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-50">
       <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-10 shadow-md">
@@ -11,21 +8,9 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to Admin</h2>
           <p className="mt-2 text-center text-sm text-gray-900">Please enter your super secret credentials</p>
         </div>
-        {params.error && (
-          <div className="rounded-md bg-red-50 p-4">
-            <p className="text-sm text-red-700">Invalid username or password.</p>
-          </div>
-        )}
         <form className="mt-8 space-y-6" action={async (formData) => {
           "use server";
-          try {
-            await signIn("credentials", formData);
-          } catch (error) {
-            if (error instanceof AuthError) {
-              redirect("/auth/signin?error=1");
-            }
-            throw error; // Rethrow to let Next.js handle NEXT_REDIRECT properly
-          }
+          await signIn("credentials", formData);
         }}>
           <div className="-space-y-px rounded-md shadow-sm">
             <div>

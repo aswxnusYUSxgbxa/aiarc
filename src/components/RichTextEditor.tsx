@@ -3,13 +3,13 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
+import Placeholder from "@tiptap/extension-placeholder";
 import { Bold, Italic, List, ListOrdered, Heading2, Quote, Link as LinkIcon, Unlink } from "lucide-react";
 import { useCallback } from "react";
 
-const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) return null;
-
+const MenuBar = ({ editor }: { editor: ReturnType<typeof useEditor> }) => {
   const setLink = useCallback(() => {
+    if (!editor) return;
     const previousUrl = editor.getAttributes('link').href
     const url = window.prompt('URL', previousUrl)
 
@@ -24,6 +24,8 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }, [editor])
+
+  if (!editor) return null;
 
   return (
     <div className="flex flex-wrap gap-2 border-b border-gray-200 p-2 mb-4 bg-gray-50 rounded-t-lg">
@@ -47,10 +49,11 @@ export default function RichTextEditor({ content, onChange }: { content: string;
     extensions: [
       StarterKit,
       Image,
-      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-indigo-600 underline' } })
+      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-indigo-600 underline' } }),
+      Placeholder.configure({ placeholder: "Start writing your amazing post..." })
     ],
     content: content,
-    editorProps: { attributes: { class: "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] p-4" } },
+    editorProps: { attributes: { class: "prose prose-slate prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] p-4" } },
     onUpdate: ({ editor }) => { onChange(editor.getHTML()); },
   });
   return (
