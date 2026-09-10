@@ -53,9 +53,12 @@ export default function RichTextEditor({ content, onChange }: { content: string;
       Placeholder.configure({ placeholder: "Start writing your amazing post..." })
     ],
     content: content,
+    immediatelyRender: false,
     editorProps: { attributes: { class: "prose prose-slate prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] p-4 text-gray-900" } },
     onUpdate: ({ editor }) => { onChange(editor.getHTML()); },
   });
+  if (!editor) return null;
+
   return (
     <div className="border border-gray-300 rounded-lg bg-white">
       <MenuBar editor={editor} />
