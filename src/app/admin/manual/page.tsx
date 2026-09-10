@@ -101,7 +101,7 @@ export default function CreateManualPostPage() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Your awesome blog title..."
-              className="w-full border border-gray-300 rounded-md p-3 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full border border-gray-300 rounded-md p-3 focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
             />
           </div>
           <div>
@@ -120,7 +120,7 @@ export default function CreateManualPostPage() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
             >
               <option value="DRAFT">Draft</option>
               <option value="PUBLISHED">Published</option>
@@ -134,7 +134,7 @@ export default function CreateManualPostPage() {
               type="text"
               value={authorName}
               onChange={(e) => setAuthorName(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
             />
           </div>
           <div>
@@ -146,7 +146,7 @@ export default function CreateManualPostPage() {
               accept="image/*"
               onChange={handleImageUpload}
               disabled={isUploading}
-              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+              className="w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
             />
             {isUploading && <p className="text-sm text-gray-900 mt-2">Uploading...</p>}
             {coverImage && (
