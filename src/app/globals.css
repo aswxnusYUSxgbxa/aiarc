@@ -27,9 +27,37 @@ body {
 
 /* Ensure rich text editor empty state placeholder is visible */
 .ProseMirror p.is-editor-empty:first-child::before {
-  color: #111827;
+  color: #6b7280; /* gray-500 placeholder text */
   content: attr(data-placeholder);
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+/* Custom prose high-contrast text styling (Black) */
+.custom-prose,
+.custom-prose p,
+.custom-prose h1,
+.custom-prose h2,
+.custom-prose h3,
+.custom-prose h4,
+.custom-prose h5,
+.custom-prose h6,
+.custom-prose ul,
+.custom-prose ol,
+.custom-prose li,
+.custom-prose blockquote,
+.custom-prose strong,
+.custom-prose b,
+.custom-prose em,
+.custom-prose i {
+  color: #000000 !important;
+}
+
+.custom-prose a {
+  color: #4f46e5 !important; /* Indigo 600 */
+}
+
+.custom-prose a:hover {
+  color: #6366f1 !important; /* Indigo 500 */
 }

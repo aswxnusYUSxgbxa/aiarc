@@ -34,7 +34,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1] mb-8">{post.title}</h1>
             {post.coverImage && <div className="mt-10 rounded-2xl overflow-hidden shadow-xl aspect-video w-full bg-gray-100"><img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" /></div>}
           </header>
-          <div className="prose prose-lg sm:prose-xl lg:prose-2xl mx-auto prose-gray prose-headings:text-gray-900 prose-p:text-gray-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-strong:text-gray-900 prose-ul:text-gray-900 prose-ol:text-gray-900 prose-li:text-gray-900 prose-blockquote:text-gray-900" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="prose prose-lg sm:prose-xl lg:prose-2xl mx-auto custom-prose prose-headings:font-bold" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
       </main>
       <footer className="border-t border-gray-100 py-12 mt-20">
