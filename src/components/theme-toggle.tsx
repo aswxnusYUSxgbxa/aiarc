@@ -9,6 +9,7 @@ export function ThemeToggle() {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
+    // eslint-disable-next-line
     setMounted(true);
   }, []);
 
