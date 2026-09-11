@@ -1,9 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { format } from "date-fns";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-  const currentDate = format(new Date(), "E, MMM d, yyyy");
+  const [currentDate, setCurrentDate] = useState("");
+
+  useEffect(() => {
+    // Only format date on the client after mount
+    const timer = setTimeout(() => {
+      setCurrentDate(format(new Date(), "E, MMM d, yyyy"));
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const tags = [
     { name: "Home", href: "/" },

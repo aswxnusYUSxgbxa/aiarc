@@ -83,19 +83,14 @@ export default async function HomePage(
               {sidePosts.length > 0 && (
                 <div className="flex flex-col gap-8">
                   {sidePosts.map((post) => (
-                    <article key={post.id} className="relative group flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 items-start">
-                      {post.coverImage && (
-                        <div className="w-full sm:w-1/3 lg:w-full xl:w-1/3 flex-shrink-0">
-                          <img src={post.coverImage} alt={post.title} className="w-full h-32 object-cover rounded-lg" />
-                        </div>
-                      )}
+                    <article key={post.id} className="relative group flex flex-col gap-2 items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-x-4 text-xs mb-2">
                           <time dateTime={post.createdAt.toISOString()} className="text-gray-900 dark:text-gray-400">
                             {format(new Date(post.createdAt), "MMM d, yyyy")}
                           </time>
                         </div>
-                        <h3 className="text-lg font-bold leading-6 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-2">
+                        <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
                           <Link href={`/post/${post.slug}`}>
                             <span className="absolute inset-0" />
                             {post.title}
