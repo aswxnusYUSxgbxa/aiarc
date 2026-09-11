@@ -1,10 +1,32 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { format } from "date-fns";
-import { ThemeToggle } from "@/components/theme-toggle";
 
-export default async function HomePage() {
-  const posts = await prisma.post.findMany({ where: { status: "PUBLISHED" }, orderBy: { createdAt: "desc" } });
+export default async function HomePage(
+  props: {
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+  }
+) {
+  const searchParams = await props.searchParams;
+  const tag = typeof searchParams?.tag === 'string' ? searchParams.tag : undefined;
+
+  let whereClause: any = { status: "PUBLISHED" };
+
+  if (tag) {
+    whereClause = {
+      ...whereClause,
+      OR: [
+        { title: { contains: tag } },
+        { content: { contains: tag } },
+        { seoKeywords: { contains: tag } }
+      ]
+    };
+  }
+
+  const posts = await prisma.post.findMany({
+    where: whereClause,
+    orderBy: { createdAt: "desc" }
+  });
 
   const featuredPost = posts[0];
   const sidePosts = posts.slice(1, 4);
@@ -12,25 +34,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a0a]">
-      <header className="bg-white dark:bg-[#0a0a0a] border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white z-10 relative flex items-center gap-2">
-            <div className="w-6 h-6 bg-black dark:bg-white rounded-sm flex items-center justify-center">
-              <span className="text-white dark:text-black text-xs font-bold">n</span>
-            </div>
-            neoblog
-          </Link>
-          <div className="z-10 relative">
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12 border-b border-gray-200 dark:border-gray-800 pb-8">
-          <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-4">Insights & Perspectives</h1>
-          <p className="text-xl text-gray-900 dark:text-gray-300 max-w-2xl">Read our latest articles, insights, and humanized thoughts generated and refined for perfection.</p>
-        </div>
-
         {posts.length === 0 ? (
           <div className="text-center py-20 text-gray-900 dark:text-gray-300 text-lg">No published posts yet.</div>
         ) : (
@@ -112,7 +116,11 @@ export default async function HomePage() {
             {/* Bottom Grid for Remaining Posts */}
             {remainingPosts.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 border-b border-gray-200 dark:border-gray-800 pb-4">More Posts</h2>
+                <div className="mb-8 border-b border-gray-200 dark:border-gray-800 pb-8">
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">More Posts</h2>
+                  <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
+                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                   {remainingPosts.map((post) => (
                     <article key={post.id} className="relative group flex flex-col items-start justify-start">
