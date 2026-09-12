@@ -33,7 +33,7 @@ export default async function HomePage(
   const remainingPosts = posts.slice(4);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-[#0a0a0a]">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {posts.length === 0 ? (
           <div className="text-center py-20 text-gray-900 dark:text-gray-300 text-lg">No published posts yet.</div>
@@ -46,8 +46,8 @@ export default async function HomePage(
               {featuredPost && (
                 <article className="lg:col-span-2 relative group flex flex-col items-start justify-start border-t-4 border-black dark:border-white pt-6">
                   {featuredPost.coverImage && (
-                    <div className="w-full mb-6">
-                      <img src={featuredPost.coverImage} alt={featuredPost.title} className="w-full h-[400px] object-cover rounded-xl" />
+                    <div className="w-full mb-6 overflow-hidden rounded-xl">
+                      <img src={featuredPost.coverImage} alt={featuredPost.title} className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                     </div>
                   )}
                   <div className="flex-1 flex flex-col justify-start w-full">
@@ -60,7 +60,7 @@ export default async function HomePage(
                         <span>{featuredPost.authorName || "Editor"}</span>
                       </div>
                       <div className="mt-2">
-                        <h3 className="text-4xl font-extrabold leading-[1.1] text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-3">
+                        <h3 className="text-4xl font-serif font-bold leading-[1.15] text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-3">
                           <Link href={`/post/${featuredPost.slug}`}>
                             <span className="absolute inset-0" />
                             {featuredPost.title}
@@ -85,7 +85,7 @@ export default async function HomePage(
                           <span>•</span>
                           <span>{post.authorName || "Editor"}</span>
                         </div>
-                        <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                        <h3 className="text-xl font-serif font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
                           <Link href={`/post/${post.slug}`}>
                             <span className="absolute inset-0" />
                             {post.title}
@@ -102,14 +102,14 @@ export default async function HomePage(
             {remainingPosts.length > 0 && (
               <div className="mt-16 pt-8 border-t-4 border-black dark:border-white">
                 <div className="mb-8 border-b border-black dark:border-white pb-8">
-                  <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-2">More Posts</h2>
+                  <h2 className="text-3xl font-serif font-bold tracking-tight text-gray-900 dark:text-white mb-2">More Posts</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-4">
                   {remainingPosts.map((post) => (
                     <article key={post.id} className="relative group flex flex-col items-start justify-start border-t border-black dark:border-white pt-5">
                       {post.coverImage && (
-                        <div className="w-full mb-4">
-                          <img src={post.coverImage} alt={post.title} className="w-full h-48 object-cover rounded-xl" />
+                        <div className="w-full mb-4 overflow-hidden rounded-xl">
+                          <img src={post.coverImage} alt={post.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
                       )}
                       <div className="flex-1 flex flex-col justify-start w-full">
@@ -122,7 +122,7 @@ export default async function HomePage(
                             <span>{post.authorName || "Editor"}</span>
                           </div>
                           <div className="mt-2">
-                            <h3 className="text-xl font-bold leading-6 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-2">
+                            <h3 className="text-xl font-serif font-bold leading-snug text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-2">
                               <Link href={`/post/${post.slug}`}>
                                 <span className="absolute inset-0" />
                                 {post.title}
@@ -135,7 +135,7 @@ export default async function HomePage(
                   ))}
                 </div>
                 <div className="mt-16 pt-8 border-t-4 border-black dark:border-white">
-                  <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
+                  <h3 className="text-4xl font-serif font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
                   <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                 </div>
               </div>

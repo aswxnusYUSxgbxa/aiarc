@@ -35,7 +35,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-[#0a0a0a] selection:bg-indigo-100 selection:text-indigo-900">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <article className="border-t-4 border-black dark:border-white pt-10">
           <header className="mb-14 text-center max-w-3xl mx-auto">
@@ -46,17 +46,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <span>•</span>
               <span>{post.viewCount} views</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
             {post.coverImage && <div className="mt-10 rounded-2xl overflow-hidden shadow-xl aspect-video w-full bg-gray-100 dark:bg-gray-800"><img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" /></div>}
           </header>
 
-          <div className="prose prose-lg sm:prose-xl lg:prose-2xl mx-auto dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-gray-300 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-900 dark:prose-ul:text-gray-300 prose-ol:text-gray-900 dark:prose-ol:text-gray-300 prose-li:text-gray-900 dark:prose-li:text-gray-300 prose-blockquote:text-gray-900 dark:prose-blockquote:text-gray-300 text-gray-900 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="prose prose-lg sm:prose-xl lg:prose-2xl mx-auto dark:prose-invert prose-headings:font-serif prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-gray-300 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-900 dark:prose-ul:text-gray-300 prose-ol:text-gray-900 dark:prose-ol:text-gray-300 prose-li:text-gray-900 dark:prose-li:text-gray-300 prose-blockquote:text-gray-900 dark:prose-blockquote:text-gray-300 text-gray-900 dark:text-gray-300 editorial-dropcap" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
 
         {/* Recommended Posts */}
         {recommendedPosts.length > 0 && (
           <section className="mt-20 pt-10 border-t-4 border-black dark:border-white">
-            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-8">Recommended Posts</h2>
+            <h2 className="text-3xl font-serif font-bold text-gray-900 dark:text-white mb-8">Recommended Posts</h2>
             <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory gap-6 scrollbar-hide">
               {recommendedPosts.map((rec, index) => {
                 const showImage = index % 2 === 0;
@@ -67,7 +67,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   >
                     {showImage && rec.coverImage && (
                       <div className="w-full h-48 flex-shrink-0 mb-4 rounded-xl overflow-hidden">
-                        <img src={rec.coverImage} alt={rec.title} className="w-full h-full object-cover" />
+                        <img src={rec.coverImage} alt={rec.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                       </div>
                     )}
                     <div className="flex flex-col flex-1">
@@ -78,7 +78,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                         <span>•</span>
                         <span>{rec.authorName || "Editor"}</span>
                       </div>
-                      <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-4 line-clamp-3">
+                      <h3 className="text-xl font-serif font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-4 line-clamp-3">
                         <Link href={`/post/${rec.slug}`}>
                           <span className="absolute inset-0" />
                           {rec.title}
