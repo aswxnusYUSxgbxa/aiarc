@@ -13,6 +13,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
 .dark {
@@ -23,7 +24,25 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Drop Cap Styling for Articles */
+.editorial-dropcap > p:first-of-type::first-letter {
+  font-family: var(--font-playfair);
+  float: left;
+  font-size: 5rem;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: -4px;
+  font-weight: 700;
+  color: #000;
+}
+
+.dark .editorial-dropcap > p:first-of-type::first-letter {
+  color: #fff;
 }
 
 /* Ensure rich text editor empty state placeholder is visible */
