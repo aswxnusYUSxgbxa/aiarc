@@ -141,13 +141,13 @@ export default async function HomePage(
                         <div className="mt-4 flex items-center gap-x-4">
                           <div className="text-sm leading-6 z-10 relative">
                             <span className="font-semibold text-gray-900 dark:text-gray-300">{post.authorName || "Editor"}</span>
-
-
-                            <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
-                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                           </div>
                         </div>
                       </div>
+
+                      
+                            <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
+                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                     </article>
                   ))}
                 </div>
