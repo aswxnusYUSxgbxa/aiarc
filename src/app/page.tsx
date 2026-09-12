@@ -44,7 +44,7 @@ export default async function HomePage(
 
               {/* Featured Post (Left, spans 2 columns) */}
               {featuredPost && (
-                <article className="lg:col-span-2 relative group flex flex-col items-start justify-start border-t-4 border-gray-900 dark:border-white pt-6">
+                <article className="lg:col-span-2 relative group flex flex-col items-start justify-start border-t-4 border-black dark:border-white pt-6">
                   {featuredPost.coverImage && (
                     <div className="w-full mb-6">
                       <img src={featuredPost.coverImage} alt={featuredPost.title} className="w-full h-[400px] object-cover rounded-xl" />
@@ -52,27 +52,20 @@ export default async function HomePage(
                   )}
                   <div className="flex-1 flex flex-col justify-start w-full">
                     <div>
-                      <div className="flex items-center gap-x-4 text-xs">
-                        <time dateTime={featuredPost.createdAt.toISOString()} className="text-gray-900 dark:text-gray-400">
-                          {format(new Date(featuredPost.createdAt), "MMMM d, yyyy")}
+                      <div className="flex items-center gap-x-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-2">
+                        <time dateTime={featuredPost.createdAt.toISOString()}>
+                          {format(new Date(featuredPost.createdAt), "MMM d, yyyy")}
                         </time>
+                        <span>•</span>
+                        <span>{featuredPost.authorName || "Editor"}</span>
                       </div>
-                      <div className="mt-4">
-                        <h3 className="text-3xl font-bold leading-9 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-3">
+                      <div className="mt-2">
+                        <h3 className="text-4xl font-extrabold leading-[1.1] text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-3">
                           <Link href={`/post/${featuredPost.slug}`}>
                             <span className="absolute inset-0" />
                             {featuredPost.title}
                           </Link>
                         </h3>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex items-center gap-x-4">
-                      <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-900 dark:text-white font-bold z-10 relative">
-                        {(featuredPost.authorName || "E")[0].toUpperCase()}
-                      </div>
-                      <div className="text-sm leading-6 z-10 relative">
-                        <p className="font-semibold text-gray-900 dark:text-white">{featuredPost.authorName || "Editor"}</p>
-                        <p className="text-gray-900 dark:text-gray-400">Author</p>
                       </div>
                     </div>
                   </div>
@@ -83,12 +76,14 @@ export default async function HomePage(
               {sidePosts.length > 0 && (
                 <div className="flex flex-col gap-6">
                   {sidePosts.map((post) => (
-                    <article key={post.id} className="relative group flex flex-col gap-2 items-start border-b border-gray-200 dark:border-gray-800 pb-6 last:border-0 last:pb-0">
+                    <article key={post.id} className="relative group flex flex-col gap-2 items-start border-b border-black dark:border-white pb-6 last:border-0 last:pb-0">
                       <div className="flex-1 w-full">
-                        <div className="flex items-center gap-x-4 text-xs mb-2">
-                          <time dateTime={post.createdAt.toISOString()} className="text-gray-900 dark:text-gray-400">
+                        <div className="flex items-center gap-x-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-2">
+                          <time dateTime={post.createdAt.toISOString()}>
                             {format(new Date(post.createdAt), "MMM d, yyyy")}
                           </time>
+                          <span>•</span>
+                          <span>{post.authorName || "Editor"}</span>
                         </div>
                         <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
                           <Link href={`/post/${post.slug}`}>
@@ -96,11 +91,6 @@ export default async function HomePage(
                             {post.title}
                           </Link>
                         </h3>
-                        <div className="mt-3 flex items-center gap-x-3">
-                          <div className="text-sm leading-5 z-10 relative">
-                            <span className="font-semibold text-gray-900 dark:text-gray-300">{post.authorName || "Editor"}</span>
-                          </div>
-                        </div>
                       </div>
                     </article>
                   ))}
@@ -110,13 +100,13 @@ export default async function HomePage(
 
             {/* Bottom Grid for Remaining Posts */}
             {remainingPosts.length > 0 && (
-              <div>
-                <div className="mb-8 border-b border-gray-200 dark:border-gray-800 pb-8">
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">More Posts</h2>
+              <div className="mt-16 pt-8 border-t-4 border-black dark:border-white">
+                <div className="mb-8 border-b border-black dark:border-white pb-8">
+                  <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-2">More Posts</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-4">
                   {remainingPosts.map((post) => (
-                    <article key={post.id} className="relative group flex flex-col items-start justify-start border-t border-gray-300 dark:border-gray-700 pt-5">
+                    <article key={post.id} className="relative group flex flex-col items-start justify-start border-t border-black dark:border-white pt-5">
                       {post.coverImage && (
                         <div className="w-full mb-4">
                           <img src={post.coverImage} alt={post.title} className="w-full h-48 object-cover rounded-xl" />
@@ -124,12 +114,14 @@ export default async function HomePage(
                       )}
                       <div className="flex-1 flex flex-col justify-start w-full">
                         <div>
-                          <div className="flex items-center gap-x-4 text-xs">
-                            <time dateTime={post.createdAt.toISOString()} className="text-gray-900 dark:text-gray-400">
-                              {format(new Date(post.createdAt), "MMMM d, yyyy")}
+                          <div className="flex items-center gap-x-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-2">
+                            <time dateTime={post.createdAt.toISOString()}>
+                              {format(new Date(post.createdAt), "MMM d, yyyy")}
                             </time>
+                            <span>•</span>
+                            <span>{post.authorName || "Editor"}</span>
                           </div>
-                          <div className="mt-3">
+                          <div className="mt-2">
                             <h3 className="text-xl font-bold leading-6 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-2">
                               <Link href={`/post/${post.slug}`}>
                                 <span className="absolute inset-0" />
@@ -138,16 +130,11 @@ export default async function HomePage(
                             </h3>
                           </div>
                         </div>
-                        <div className="mt-4 flex items-center gap-x-4">
-                          <div className="text-sm leading-6 z-10 relative">
-                            <span className="font-semibold text-gray-900 dark:text-gray-300">{post.authorName || "Editor"}</span>
-                          </div>
-                        </div>
                       </div>
                     </article>
                   ))}
                 </div>
-                <div className="mt-16 pt-8 border-t-4 border-gray-900 dark:border-white">
+                <div className="mt-16 pt-8 border-t-4 border-black dark:border-white">
                   <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
                   <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                 </div>

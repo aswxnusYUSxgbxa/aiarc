@@ -37,9 +37,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="min-h-screen bg-white dark:bg-[#0a0a0a] selection:bg-indigo-100 selection:text-indigo-900">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <article className="border-t-4 border-gray-900 dark:border-white pt-10">
+        <article className="border-t-4 border-black dark:border-white pt-10">
           <header className="mb-14 text-center max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-x-4 text-sm text-gray-900 dark:text-gray-400 mb-6"><time dateTime={post.createdAt.toISOString()}>{format(new Date(post.createdAt), "MMMM d, yyyy")}</time><span>•</span><span>{post.authorName || "Editor"}</span><span>•</span><span>{post.viewCount} views</span></div>
+            <div className="flex items-center justify-center gap-x-3 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-6">
+              <time dateTime={post.createdAt.toISOString()}>{format(new Date(post.createdAt), "MMM d, yyyy")}</time>
+              <span>•</span>
+              <span>{post.authorName || "Editor"}</span>
+              <span>•</span>
+              <span>{post.viewCount} views</span>
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
             {post.coverImage && <div className="mt-10 rounded-2xl overflow-hidden shadow-xl aspect-video w-full bg-gray-100 dark:bg-gray-800"><img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" /></div>}
           </header>
@@ -49,7 +55,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         {/* Recommended Posts */}
         {recommendedPosts.length > 0 && (
-          <section className="mt-20 pt-10 border-t border-gray-200 dark:border-gray-800">
+          <section className="mt-20 pt-10 border-t-4 border-black dark:border-white">
             <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-8">Recommended Posts</h2>
             <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory gap-6 scrollbar-hide">
               {recommendedPosts.map((rec, index) => {
@@ -57,7 +63,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 return (
                   <article
                     key={rec.id}
-                    className="relative group flex-shrink-0 w-80 sm:w-96 flex flex-col snap-start border-t border-gray-300 dark:border-gray-700 pt-5"
+                    className="relative group flex-shrink-0 w-80 sm:w-96 flex flex-col snap-start border-t border-black dark:border-white pt-5"
                   >
                     {showImage && rec.coverImage && (
                       <div className="w-full h-48 flex-shrink-0 mb-4 rounded-xl overflow-hidden">
@@ -65,10 +71,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                       </div>
                     )}
                     <div className="flex flex-col flex-1">
-                      <div className="flex items-center gap-x-4 text-xs mb-3">
-                        <time dateTime={rec.createdAt.toISOString()} className="text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center gap-x-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-2">
+                        <time dateTime={rec.createdAt.toISOString()}>
                           {format(new Date(rec.createdAt), "MMM d, yyyy")}
                         </time>
+                        <span>•</span>
+                        <span>{rec.authorName || "Editor"}</span>
                       </div>
                       <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-4 line-clamp-3">
                         <Link href={`/post/${rec.slug}`}>
@@ -76,11 +84,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                           {rec.title}
                         </Link>
                       </h3>
-                      <div className="mt-auto flex items-center gap-x-3">
-                        <div className="text-sm leading-5 z-10 relative">
-                          <span className="font-semibold text-gray-900 dark:text-gray-300">{rec.authorName || "Editor"}</span>
-                        </div>
-                      </div>
                     </div>
                   </article>
                 );
