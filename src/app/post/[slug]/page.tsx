@@ -37,7 +37,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="min-h-screen bg-white dark:bg-[#0a0a0a] selection:bg-indigo-100 selection:text-indigo-900">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <article className="border border-gray-300 dark:border-gray-700 p-6 sm:p-10 lg:p-12">
+        <article className="border-t-4 border-gray-900 dark:border-white pt-10">
           <header className="mb-14 text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-x-4 text-sm text-gray-900 dark:text-gray-400 mb-6"><time dateTime={post.createdAt.toISOString()}>{format(new Date(post.createdAt), "MMMM d, yyyy")}</time><span>•</span><span>{post.authorName || "Editor"}</span><span>•</span><span>{post.viewCount} views</span></div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
@@ -57,14 +57,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 return (
                   <article
                     key={rec.id}
-                    className="relative group flex-shrink-0 w-80 sm:w-96 flex flex-col snap-start bg-gray-50 dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700"
+                    className="relative group flex-shrink-0 w-80 sm:w-96 flex flex-col snap-start border-t border-gray-300 dark:border-gray-700 pt-5"
                   >
                     {showImage && rec.coverImage && (
-                      <div className="w-full h-48 flex-shrink-0">
+                      <div className="w-full h-48 flex-shrink-0 mb-4 rounded-xl overflow-hidden">
                         <img src={rec.coverImage} alt={rec.title} className="w-full h-full object-cover" />
                       </div>
                     )}
-                    <div className="p-6 flex flex-col flex-1">
+                    <div className="flex flex-col flex-1">
                       <div className="flex items-center gap-x-4 text-xs mb-3">
                         <time dateTime={rec.createdAt.toISOString()} className="text-gray-600 dark:text-gray-400">
                           {format(new Date(rec.createdAt), "MMM d, yyyy")}
