@@ -44,7 +44,7 @@ export default async function HomePage(
 
               {/* Featured Post (Left, spans 2 columns) */}
               {featuredPost && (
-                <article className="lg:col-span-2 relative group flex flex-col items-start justify-start border border-gray-300 dark:border-gray-700 p-6">
+                <article className="lg:col-span-2 relative group flex flex-col items-start justify-start">
                   {featuredPost.coverImage && (
                     <div className="w-full mb-6">
                       <img src={featuredPost.coverImage} alt={featuredPost.title} className="w-full h-[400px] object-cover rounded-xl" />
@@ -83,8 +83,8 @@ export default async function HomePage(
               {sidePosts.length > 0 && (
                 <div className="flex flex-col gap-8">
                   {sidePosts.map((post) => (
-                    <article key={post.id} className="relative group flex flex-col gap-2 items-start border border-gray-300 dark:border-gray-700 p-4">
-                      <div className="flex-1 w-full">
+                    <article key={post.id} className="relative group flex flex-col gap-2 items-start">
+                      <div className="flex-1">
                         <div className="flex items-center gap-x-4 text-xs mb-2">
                           <time dateTime={post.createdAt.toISOString()} className="text-gray-900 dark:text-gray-400">
                             {format(new Date(post.createdAt), "MMM d, yyyy")}
@@ -113,12 +113,10 @@ export default async function HomePage(
               <div>
                 <div className="mb-8 border-b border-gray-200 dark:border-gray-800 pb-8">
                   <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">More Posts</h2>
-                  <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
-                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                   {remainingPosts.map((post) => (
-                    <article key={post.id} className="relative group flex flex-col items-start justify-start border border-gray-300 dark:border-gray-700 p-5">
+                    <article key={post.id} className="relative group flex flex-col items-start justify-start">
                       {post.coverImage && (
                         <div className="w-full mb-4">
                           <img src={post.coverImage} alt={post.title} className="w-full h-48 object-cover rounded-xl" />
@@ -143,6 +141,10 @@ export default async function HomePage(
                         <div className="mt-4 flex items-center gap-x-4">
                           <div className="text-sm leading-6 z-10 relative">
                             <span className="font-semibold text-gray-900 dark:text-gray-300">{post.authorName || "Editor"}</span>
+
+
+                            <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
+                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                           </div>
                         </div>
                       </div>
