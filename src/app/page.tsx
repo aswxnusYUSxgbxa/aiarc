@@ -113,8 +113,6 @@ export default async function HomePage(
               <div>
                 <div className="mb-8 border-b border-gray-200 dark:border-gray-800 pb-8">
                   <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">More Posts</h2>
-                  <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
-                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                   {remainingPosts.map((post) => (
@@ -148,6 +146,10 @@ export default async function HomePage(
                       </div>
                     </article>
                   ))}
+                </div>
+                <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+                  <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-3">Insights & Perspectives</h3>
+                  <p className="text-lg text-gray-900 dark:text-gray-300 max-w-2xl">Deep dives, expert analysis, and breaking stories curated by our editorial team.</p>
                 </div>
               </div>
             )}
