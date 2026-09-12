@@ -39,7 +39,7 @@ export default function Header() {
               className="text-4xl font-extrabold tracking-tighter text-gray-900 dark:text-white"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              The Neo Times
+              The Blog Times
             </Link>
           </div>
           <div className="flex-1 flex justify-end">
