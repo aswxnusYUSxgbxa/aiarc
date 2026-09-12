@@ -37,17 +37,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="min-h-screen bg-[#faf9f6] dark:bg-[#0a0a0a] selection:bg-indigo-100 selection:text-indigo-900">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <article className="border-t-4 border-black dark:border-white pt-10">
+        <article className="border-t-[6px] border-double border-black dark:border-white pt-10">
           <header className="mb-14 text-center max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-x-3 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400 mb-6">
-              <time dateTime={post.createdAt.toISOString()}>{format(new Date(post.createdAt), "MMM d, yyyy")}</time>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-black text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-400 mb-8 border-y border-black dark:border-white py-3 w-max mx-auto px-8">
+              <span>By {post.authorName || "Editor"}</span>
               <span>•</span>
-              <span>{post.authorName || "Editor"}</span>
+              <time dateTime={post.createdAt.toISOString()}>{format(new Date(post.createdAt), "MMM d, yyyy")}</time>
               <span>•</span>
               <span>{post.viewCount} views</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-white tracking-tight leading-[1.1] mb-8">{post.title}</h1>
-            {post.coverImage && <div className="mt-10 rounded-2xl overflow-hidden shadow-xl aspect-video w-full bg-gray-100 dark:bg-gray-800"><img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" /></div>}
+            {post.coverImage && <div className="mt-10 rounded-2xl overflow-hidden shadow-none border border-gray-200 dark:border-gray-800 aspect-video w-full bg-gray-100 dark:bg-gray-800"><img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" /></div>}
           </header>
 
           <div className="prose prose-lg sm:prose-xl lg:prose-2xl mx-auto dark:prose-invert prose-headings:font-serif prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-gray-300 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-900 dark:prose-ul:text-gray-300 prose-ol:text-gray-900 dark:prose-ol:text-gray-300 prose-li:text-gray-900 dark:prose-li:text-gray-300 prose-blockquote:text-gray-900 dark:prose-blockquote:text-gray-300 text-gray-900 dark:text-gray-300 editorial-dropcap" dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -55,8 +55,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         {/* Recommended Posts */}
         {recommendedPosts.length > 0 && (
-          <section className="mt-20 pt-10 border-t-4 border-black dark:border-white">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 dark:text-white mb-8">Recommended Posts</h2>
+          <section className="mt-20 pt-10 border-t-[6px] border-double border-black dark:border-white">
+            <h2 className="text-4xl font-serif font-black uppercase tracking-tight text-gray-900 dark:text-white mb-8 text-center border-b-2 border-black dark:border-white pb-6">Recommended Posts</h2>
             <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory gap-6 scrollbar-hide">
               {recommendedPosts.map((rec, index) => {
                 const showImage = index % 2 === 0;

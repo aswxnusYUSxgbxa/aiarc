@@ -26,33 +26,37 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white dark:bg-[#0a0a0a] border-b border-gray-200 dark:border-gray-800">
+    <header className="bg-[#faf9f6] dark:bg-[#0a0a0a] border-b-4 border-black dark:border-white mb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Bar */}
-        <div className="h-20 flex items-center justify-between border-b border-gray-200 dark:border-gray-800">
-          <div className="flex-1 flex items-center text-sm text-gray-600 dark:text-gray-400">
+        {/* Masthead Header */}
+        <div className="py-8 flex flex-col items-center justify-center border-b-2 border-black dark:border-white relative">
+          <div className="absolute top-8 left-0 text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-gray-400">
             {currentDate}
           </div>
-          <div className="flex-1 flex justify-center">
-            <Link
-              href="/"
-              className="text-4xl font-extrabold tracking-tighter text-gray-900 dark:text-white"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              The Neo Times
-            </Link>
-          </div>
-          <div className="flex-1 flex justify-end">
+          <div className="absolute top-8 right-0">
             <ThemeToggle />
           </div>
+
+          <Link
+            href="/"
+            className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 dark:text-white my-4 hover:opacity-80 transition-opacity"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            The Neo Times
+          </Link>
+
+          <div className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-gray-900 dark:text-gray-400 border-t border-b border-black dark:border-white py-1 w-full text-center max-w-md">
+            “The finest journalism in the digital age”
+          </div>
         </div>
+
         {/* Navigation Bar */}
-        <nav className="h-12 flex items-center gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide text-sm font-medium">
+        <nav className="h-14 flex items-center justify-center gap-8 overflow-x-auto whitespace-nowrap scrollbar-hide text-sm font-bold uppercase tracking-wider">
           {tags.map((tag) => (
             <Link
               key={tag.name}
               href={tag.href}
-              className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+              className="text-gray-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               {tag.name}
             </Link>
