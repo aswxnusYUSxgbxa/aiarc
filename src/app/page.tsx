@@ -1,6 +1,29 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { format } from "date-fns";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  props: { searchParams?: Promise<{ [key: string]: string | string[] | undefined }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const searchParams = await props.searchParams;
+  const tag = typeof searchParams?.tag === 'string' ? searchParams.tag : undefined;
+
+  const baseKeywords = ["betting", "cricket", "football", "sports", "news", "creative blog site", "latest insights", "top topics"];
+
+  if (tag) {
+    const finalKeywords = Array.from(new Set([tag, ...baseKeywords]));
+    return {
+      title: `${tag} | newnblog`,
+      description: `Browse the latest insights and posts about ${tag} on newnblog.`,
+      keywords: finalKeywords,
+    };
+  }
+
+  // Uses fallback metadata from layout.tsx
+  return {};
+}
 
 export default async function HomePage(
   props: {

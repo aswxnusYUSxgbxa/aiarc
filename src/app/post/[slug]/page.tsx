@@ -8,7 +8,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await prisma.post.findUnique({ where: { slug: slug } });
   if (!post) return { title: "Post Not Found" };
-  return { title: post.title, description: post.seoKeywords ? `Read about ${post.seoKeywords}` : post.title, openGraph: { images: post.coverImage ? [post.coverImage] : [] } };
+
+  const baseKeywords = ["betting", "cricket", "football", "sports", "news", "creative blog site", "latest insights", "top topics"];
+  const postKeywords = post.seoKeywords
+    ? post.seoKeywords.split(',').map(k => k.trim())
+    : [];
+
+  const finalKeywords = Array.from(new Set([...postKeywords, ...baseKeywords]));
+
+  return {
+    title: `${post.title} | newnblog`,
+    description: post.seoKeywords ? `Read about ${post.seoKeywords}` : post.title,
+    keywords: finalKeywords,
+    openGraph: { images: post.coverImage ? [post.coverImage] : [] }
+  };
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
